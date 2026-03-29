@@ -30,11 +30,11 @@ Main issues observed in the dataset:
 
 Steps performed:
 
-- Removed rows where `arr_flights` was null (no flights → no analysis value)
+- Removed rows where `arr_flights` was null (no flights -> no analysis value)
 - Handled missing values in delay columns instead of dropping entire rows
-- Standardized airline names (e.g., "Delta Air Lines Inc." → "Delta Air Lines")
+- Standardized airline names (eg, "Delta Air Lines Inc." -> "Delta Air Lines")
 - Checked and retained valid negative values (representing early arrivals)
-- Fixed data types (floats → integers where applicable)
+- Fixed data types (floats -> integers where applicable)
 
 ---
 
@@ -100,7 +100,7 @@ This structure reflects real-world reporting data rather than raw flight-level d
 - Security delays are minimal
 
 ### 4. Correlation
-- Carrier delay ↔ Late aircraft delay (~0.85)
+- Carrier delay <-> Late aircraft delay (~0.85)
 - NAS delay also strongly linked with other delays
 
 This shows delays are interconnected rather than isolated events.
