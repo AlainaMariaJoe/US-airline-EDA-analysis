@@ -1,6 +1,7 @@
+
 # US Airline Delay Analysis
 
-This project explores US airline flight data to understand where delays are happening, what causes them, and how airlines and airports perform over time.
+End-to-end analysis of US airline delay data to understand traffic patterns, delay causes, and performance across airlines and airports.
 
 ## Dataset Overview
 Dataset - https://www.kaggle.com/datasets/ryanjt/airline-delay-cause
@@ -14,42 +15,129 @@ The goal was to move beyond basic metrics and answer:
 - What are the main drivers of delays?
 - Are delays caused by isolated factors or connected issues?
 
-## Data Preparation
-While working with the dataset, a few issues came up:
+The project includes data cleaning, exploratory analysis, and visualization using Python and SQL.
 
-- Some rows had no flights (`arr_flights` was null) so they were removed since delay metrics wouldn’t make sense
-- Airline names were inconsistent across years (eg: "Delta Air Lines Inc." vs "Delta Air Lines Network") so they were standardized
-- Missing values in delay-related columns were handled carefully instead of blindly dropping rows
-- A few negative values were checked and validated (early arrivals)
+---
 
-## Analysis Performed
+##  1. Data Cleaning & Preparation
 
-### 1. Airline Performance
-- Compared airlines based on traffic and delay rates
-- Southwest, Delta, and American Airlines handled the highest volume
-- Delay rates varied significantly even among top carriers
+Main issues observed in the dataset:
 
-### 2. Airport Performance
-- Major hubs like ATL, ORD, and DFW handled the most traffic
-- Some mid-traffic airports showed higher delay rates than busy hubs
+- Rows with no flights (`arr_flights` = null)
+- Inconsistent airline names across years
+- Missing values in delay-related columns
+- Few negative values (early arrivals)
 
-### 3. Delay Breakdown
-- Late aircraft delay was the largest contributor
-- Security delays had minimal impact
-- This suggests most delays are operational rather than external
+Steps performed:
 
-### 4. Correlation Analysis
-- Strong relationship between carrier delays and late aircraft delays (~0.85)
-- NAS delays also showed high correlation with other delay types
-- Indicates delays are not independent, one issue can cascade into others
+- Removed rows where `arr_flights` was null (no flights → no analysis value)
+- Handled missing values in delay columns instead of dropping entire rows
+- Standardized airline names (e.g., "Delta Air Lines Inc." → "Delta Air Lines")
+- Checked and retained valid negative values (representing early arrivals)
+- Fixed data types (floats → integers where applicable)
 
-### 5. Distribution Insights
-- Most flights fall within a moderate delay range
-- A small number of extreme cases (outliers) significantly impact averages
+---
 
-## Key Takeaway
-Delays are interconnected. Fixing airline-level operational issues can reduce multiple delay categories at once, especially late aircraft and NAS-related delays.
+##  2. Dataset Structure
 
-## Tools Used
+The dataset is already aggregated and includes:
+
+- Airline (`carrier`, `carrier_clean`)
+- Airport
+- Flight counts (`arr_flights`)
+- Delay counts (`arr_del15`)
+- Delay causes:
+  - Carrier
+  - Weather
+  - NAS (National Airspace System)
+  - Security
+  - Late Aircraft
+
+This structure reflects real-world reporting data rather than raw flight-level data.
+
+---
+
+##  3. Analysis Performed
+
+### a) Airline Performance
+- Identified busiest airlines based on total flights
+- Compared delay rates across airlines
+- Found airlines with highest and lowest delay %
+
+### b) Airport Analysis
+- Identified busiest airports by traffic
+- Compared delay rates across airports
+- Observed that some mid-traffic airports had higher delay rates than major hubs
+
+### c) Delay Cause Analysis
+- Analyzed contribution of each delay type
+- Compared total delays by cause
+
+### d) Correlation Analysis
+- Checked relationships between delay types
+- Identified strong correlations between:
+  - Carrier delay & Late aircraft delay
+  - NAS delay & other operational delays
+
+### e) Distribution & Outliers
+- Most flights fall under moderate delay ranges
+- Few extreme cases significantly impact averages
+
+---
+
+##  4. Key Findings
+
+### 1. Airline Insights
+- Southwest, Delta, and American Airlines handle the highest traffic
+- Delay rates vary even among high-volume carriers
+
+### 2. Airport Insights
+- ATL, ORD, and DFW are the busiest airports
+- Some medium-traffic airports show higher delay rates than major hubs
+
+### 3. Delay Causes
+- Late aircraft delay is the biggest contributor
+- Security delays are minimal
+
+### 4. Correlation
+- Carrier delay ↔ Late aircraft delay (~0.85)
+- NAS delay also strongly linked with other delays
+
+This shows delays are interconnected rather than isolated events.
+
+---
+
+## 💡 5. Key Insight
+
+Delays are not independent.
+
+Improving airline operations (carrier delays) can reduce multiple delay types, especially late aircraft and NAS delays.
+
+---
+
+##  6. Visualizations
+
+Used:
+- Matplotlib
+- Seaborn
+
+Charts created:
+- Top airlines by delay rate
+- Airport delay comparisons
+- Delay cause distribution
+- Correlation heatmap
+
+---
+
+##  Tools Used
+
 - Python (Pandas, NumPy)
-- Matplotlib, Seaborn for visualization
+- Matplotlib & Seaborn
+- Google Colab
+
+---
+
+
+##  Notes
+
+Most effort went into cleaning and standardizing the data. The dataset reflects real-world challenges where data is not clean or consistent.
