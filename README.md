@@ -15,7 +15,7 @@ The goal was to move beyond basic metrics and answer:
 - What are the main drivers of delays?
 - Are delays caused by isolated factors or connected issues?
 
-The project includes data cleaning, exploratory analysis, and visualization using Python and SQL.
+The project includes data cleaning, exploratory analysis, and visualization using EDA
 
 ---
 
